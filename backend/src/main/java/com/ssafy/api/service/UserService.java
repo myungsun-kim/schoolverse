@@ -1,5 +1,6 @@
 package com.ssafy.api.service;
 
+import com.ssafy.api.request.UserModifyPutReq;
 import com.ssafy.api.request.UserRegisterPostReq;
 import com.ssafy.db.entity.User;
 
@@ -10,4 +11,9 @@ public interface UserService {
 	User createUser(UserRegisterPostReq userRegisterInfo);
 	User getUserByUserId(String userId);
 	void modifyUser(String userId, UserRegisterPostReq userRegisterInfo);
+	//추가
+	boolean checkUserId(String userid);
+	void deleteById(Long id);
+	User modifyUser(UserModifyPutReq userModifyInfo, String userId, Long id);
+	User modifyPW(String PW, String userId, Long id);
 }
