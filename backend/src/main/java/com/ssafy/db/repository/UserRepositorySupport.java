@@ -28,8 +28,7 @@ public class UserRepositorySupport {
     
     public void updateUserByUserId(String userId, UserRegisterPostReq userRegisterInfo) {
     	jpaQueryFactory.update(qUser).where(qUser.userId.eq(userId))
-    			.set(qUser.name, userRegisterInfo.getName()).set(qUser.password, userRegisterInfo.getPassword())
-    			.set(qUser.department, userRegisterInfo.getDepartment()).set(qUser.position, userRegisterInfo.getPosition())
+    			.set(qUser.nickname, userRegisterInfo.getNickname()).set(qUser.password, userRegisterInfo.getPassword())
     			.execute();
     }
 }

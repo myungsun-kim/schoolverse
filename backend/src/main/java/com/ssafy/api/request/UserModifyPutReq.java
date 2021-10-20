@@ -10,8 +10,8 @@ import lombok.Setter;
 @ApiModel("UserModifyPutRequest")
 public class UserModifyPutReq {
 	
-	@ApiModelProperty(name="유저 Name", example="name")
-	String name;
+	@ApiModelProperty(name="유저 Nickname", example="name")
+	String nickname;
 //	@ApiModelProperty(name="유저 Genre", example="genre")
 //	String genre;
 }

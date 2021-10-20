@@ -112,7 +112,7 @@ public class UserController {
 		return ResponseEntity.status(200).body(UserRes.of(user));
 	}
 	
-	@GetMapping("/modify")
+	@PatchMapping("/patch/{userId}")
 	@ApiOperation(value = "회원 본인 정보 수정", notes = "로그인한 회원 본인의 정보를 수정한다.") 
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "성공"),
@@ -120,14 +120,25 @@ public class UserController {
 		@ApiResponse(code = 404, message = "사용자 없음"),
 		@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<BaseResponseBody> modifyUserInfo(@ApiIgnore Authentication authentication, @RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo) {
+	public ResponseEntity<? extends BaseResponseBody> modifyUserInfo (@ApiIgnore Authentication authentication, @PathVariable("userId") String userId, @RequestBody @ApiParam(value="회원가입 정보", required = true) UserModifyPutReq modifyInfo) {
+		System.out.println("userDetails 확인 전");
 		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
-		String userId = userDetails.getUsername();
+		System.out.println("Null?");
+		String getUserId = userDetails.getUsername();
 		System.out.println("come in");
-		userService.modifyUser(userId, registerInfo);
+//		userService.modifyUser(userId, modifyInfo);
+		
+		if(getUserId.equals(userId)) {
+			User getUser = userService.getUserByUserId(userId);
+			Long id = getUser.getId();
+			User modifyUser = userService.modifyUser(modifyInfo, userId, id);
+			
+			return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
+		}
 		
 //		return ResponseEntity.status(200).body(UserRes.of(user));
-		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
+//		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
+		return ResponseEntity.status(500).body(BaseResponseBody.of(500, "수정 불가"));
 	}
 	
 	@PostMapping("/check")
@@ -193,33 +204,6 @@ public class UserController {
 		return ResponseEntity.status(500).body(BaseResponseBody.of(500, "fail"));
 	}
 	
-	@PatchMapping("/{userId}")
-	public ResponseEntity<? extends BaseResponseBody> modifyUserInfo(@ApiIgnore Authentication authentication,@PathVariable("userId") String userId,
-			@RequestBody @ApiParam(value="회원 정보 수정", required = true) UserModifyPutReq modifyInfo) {
-		/**
-		 * 요청 헤더 액세스 토큰이 포함된 경우에만 실행되는 인증 처리이후, 리턴되는 인증 정보 객체(authentication) 통해서 요청한 유저 식별.
-		 * 액세스 토큰이 없이 요청하는 경우, 403 에러({"error": "Forbidden", "message": "Access Denied"}) 발생.
-		 */
-		
-//		System.out.println("회원정보수정");
-		
-		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
-		String getUserId = userDetails.getUsername();
-		
-//		System.out.println(getUserId);
-//		System.out.println(userId);
-		
-		if(getUserId.equals(userId)) {
-			User getUser = userService.getUserByUserId(userId);
-			Long id = getUser.getId();
-			User modifyUser = userService.modifyUser(modifyInfo, userId, id);
-			
-			return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
-		}
-		
-		return ResponseEntity.status(500).body(BaseResponseBody.of(500, "수정 불가"));
-		
-	}
 	
 	@PatchMapping("/patchpw/{userId}")
 	public ResponseEntity<? extends BaseResponseBody> modifyPW(@ApiIgnore Authentication authentication,@PathVariable("userId") String userId,

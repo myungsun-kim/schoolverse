@@ -33,9 +33,9 @@ public class UserServiceImpl implements UserService {
 		user.setUserId(userRegisterInfo.getId());
 		// 보안을 위해서 유저 패스워드 암호화 하여 디비에 저장.
 		user.setPassword(passwordEncoder.encode(userRegisterInfo.getPassword()));
-		user.setName(userRegisterInfo.getName());
-		user.setDepartment(userRegisterInfo.getDepartment());
-		user.setPosition(userRegisterInfo.getPosition());
+		user.setNickname(userRegisterInfo.getNickname());
+//		user.setDepartment(userRegisterInfo.getDepartment());
+//		user.setPosition(userRegisterInfo.getPosition());
 		
 		// jpaRepository의 save가 데이터가 새로 추가되면 insert를 실행
 		return userRepository.save(user);
@@ -137,7 +137,7 @@ public class UserServiceImpl implements UserService {
 		user.setId(id);
 		user.setUserId(userId);
 		user.setPassword(getUser.getPassword());
-		user.setName(userModifyInfo.getName());
+		user.setNickname(userModifyInfo.getNickname());
 
 		return userRepository.save(user);
 	}
@@ -150,7 +150,7 @@ public class UserServiceImpl implements UserService {
 		user.setId(id);
 		user.setUserId(userId);
 		user.setPassword(passwordEncoder.encode(PW));
-		user.setName(getUser.getName());
+		user.setNickname(getUser.getNickname());
 //		user.setGenre(getUser.getGenre());
 		
 		return userRepository.save(user);
