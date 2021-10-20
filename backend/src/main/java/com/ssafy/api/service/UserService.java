@@ -11,8 +11,11 @@ public interface UserService {
 	User createUser(UserRegisterPostReq userRegisterInfo);
 	User getUserByUserId(String userId);
 	void modifyUser(String userId, UserRegisterPostReq userRegisterInfo);
-	//추가
+	
+	//중복검사
 	boolean checkUserId(String userid);
+	boolean checkNickName(String nickname);
+	
 	void deleteById(Long id);
 	User modifyUser(UserModifyPutReq userModifyInfo, String userId, Long id);
 	User modifyPW(String PW, String userId, Long id);
