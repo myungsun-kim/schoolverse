@@ -1,18 +1,20 @@
 <template>
-  <div class="flex flex-col gap-4 pb-12 flexflex-wrap ">
-    <button class="mx-11 py-2 px-3 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700">
+<div class="grid row-start-5">
+  <div class="gap-4 pb-12 self-center grid grid-cols-3">
+    <button class="mx-11 py-2 px-3 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700 col-start-2">
       <router-link class="signup-span" :to="{ name: 'Signin' }">
         로그인
       </router-link>
     </button>
   </div>
-  <div class="flex flex-col gap-4 pb-12 flexflex-wrap ">
-    <button class="mx-11 py-2 px-3 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700">
+  <div class="flex flex-col gap-4 pb-12 flexflex-wrap grid grid-cols-3">
+    <button class="mx-11 py-2 px-3 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700 col-start-2">
       <router-link class="signup-span" :to="{ name: 'Signup' }">
         회원가입
       </router-link>
     </button>
   </div>
+</div>
 </template>
 
 <script>

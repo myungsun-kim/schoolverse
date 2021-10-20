@@ -24,7 +24,7 @@ export default {
 <style lang="scss" scoped>
 .main-wrapper {
   // background-color: #f0e5de;
-  background-image: url('../assets/classroom.jpg');
+  background-image: url('../assets/classroom.png');
   background-size:100%;
   // opacity:0.5!important;
   section {

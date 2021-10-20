@@ -1,12 +1,12 @@
 <template>
-  <div class="search-bar bg-yellow-50">
+  <div class="search-bar bg-gray-300">
     <div class="top-content">
       <router-link :to="{ name: 'Home' }">
         <div class="flex">
           <span class="material-icons-outlined my-auto text-3xl">
             menu_book
           </span>
-          <p class="my-auto text-2xl">북적북적</p>
+          <p class="my-auto text-2xl">프로젝트 명</p>
         </div></router-link
       >
       <div class="btn-group">

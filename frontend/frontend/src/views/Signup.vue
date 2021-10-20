@@ -4,20 +4,41 @@
       <h1>회원가입</h1>
     </div>
     <div class="content">
-      <div class="input-form">
-        <input
-          type="text"
-          class="input"
-          v-model="userInfo.username"
-          @focus="clear"
-          @input="usernameValid"
-          placeholder="name@example.com"
-          autocomplete="off"
-        />
-        <label for="email" class="label">아이디</label>
-        <p class="text-red-500 pt-1" v-if="usernameStatus === false">
-          5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.
-        </p>
+      <div class="btn-group">
+        <div class="input-form grid grid-cols-12 gap-4">
+          <input
+            type="text"
+            class="input col-span-10"
+            v-model="userInfo.username"
+            @focus="clear"
+            @input="usernameValid"
+            placeholder="name@example.com"
+            autocomplete="off"
+          />
+          <label for="email" class="label">아이디</label>
+          <button class="btn mt-1">중복확인</button>
+          <p class="text-red-500 pt-1" v-if="usernameStatus === false">
+            5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.
+          </p>
+        </div>
+      </div>
+      <div class="btn-group">
+        <div class="input-form grid grid-cols-12 gap-4">
+          <input
+            type="email"
+            class="input col-span-10"
+            v-model="userInfo.email"
+            placeholder="name@example.com"
+            autocomplete="off"
+            @focus="emailClear"
+            @input="emailValid"
+          />
+          <label for="email" class="label">닉네임</label>
+          <button class="btn mt-1">중복확인</button>
+          <p class="text-red-500 pt-1" v-if="emailStatus === false">
+            닉네임을 다시 확인해주세요.
+          </p>
+        </div>
       </div>
       <div class="input-form">
         <form>
@@ -55,22 +76,8 @@
           </p>
         </form>
       </div>
-      <div class="input-form">
-        <input
-          type="email"
-          class="input"
-          v-model="userInfo.email"
-          placeholder="name@example.com"
-          autocomplete="off"
-          @focus="emailClear"
-          @input="emailValid"
-        />
-        <label for="email" class="label">이메일</label>
-        <p class="text-red-500 pt-1" v-if="emailStatus === false">
-          이메일 주소를 다시 확인해주세요.
-        </p>
-      </div>
-      <div class="flex gap-4">
+      
+      <!-- <div class="flex gap-4">
         <div class="input-form flex-1">
           <input
             type="lastname"
@@ -95,7 +102,7 @@
           />
           <label for="firstname" class="label">이름</label>
         </div>
-      </div>
+      </div> -->
       <p class="text-red-500 pt-1" v-if="nameStatus === false">
         이름을 정확히 입력해주세요.
       </p>
@@ -251,7 +258,7 @@ p {
 }
 
 .wrapper {
-  @apply w-3/5 mx-auto pb-32;
+  @apply w-1/3 mx-auto pb-32;
 
   .header {
     @apply py-10;
@@ -294,6 +301,12 @@ p {
       .nope {
         @apply bg-red-600 cursor-not-allowed;
       }
+      .button-id {
+        @apply w-20 h-56 bg-green-200 rounded-md;
+      }
+      // .button-nickname {
+      //   @apply 
+      // }
       .ok {
         @apply bg-blue-500;
       }

@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper mt-11">
     <div class="header"><h1>로그인</h1></div>
     <div class="content">
       <div class="input-form">
@@ -42,12 +42,12 @@
         >회원가입 하기
       </router-link>
     </div>
-    <div class="signup-button mt-4">
+    <!-- <div class="signup-button mt-4">
       <span>비밀번호를 잊으셨나요?</span><br />
       <router-link class="signup-span" :to="{ name: 'PasswordReset' }"
         >비밀번호 재설정하기
       </router-link>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -120,7 +120,7 @@ export default {
 }
 
 .wrapper {
-  @apply w-3/5 mx-auto pb-32;
+  @apply w-1/4 mx-auto pb-32;
 
   .header {
     @apply py-10;
