@@ -70,6 +70,17 @@ public class UserServiceImpl implements UserService {
 		return true;
 	}
 	
+	//닉네임 중복검사용
+	@Override
+	public boolean checkNickName(String nickname) {
+		// TODO Auto-generated method stub
+		if(userRepositorySupport.findUserByNickName(nickname).isPresent()) {
+//			System.out.println("중복임!!!");
+			return false;
+		}
+		return true;
+	}
+	
 	@Override
 	public void deleteById(Long id) {
 		// TODO Auto-generated method stub

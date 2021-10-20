@@ -26,6 +26,14 @@ public class UserRepositorySupport {
         return Optional.ofNullable(user);
     }
     
+    //닉네임 중복검사용
+    public Optional<User> findUserByNickName(String nickname) {
+        User user = jpaQueryFactory.select(qUser).from(qUser)
+                .where(qUser.nickname.eq(nickname)).fetchOne();
+        if(user == null) return Optional.empty();
+        return Optional.ofNullable(user);
+    }
+    
     public void updateUserByUserId(String userId, UserRegisterPostReq userRegisterInfo) {
     	jpaQueryFactory.update(qUser).where(qUser.userId.eq(userId))
     			.set(qUser.nickname, userRegisterInfo.getNickname()).set(qUser.password, userRegisterInfo.getPassword())

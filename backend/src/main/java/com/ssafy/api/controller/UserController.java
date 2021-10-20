@@ -49,7 +49,7 @@ public class UserController {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
-	@PostMapping("/create")
+	@PostMapping("/signUp")
 	@ApiOperation(value = "회원 가입", notes = "<strong>아이디와 패스워드</strong>를 통해 회원가입 한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),
@@ -71,7 +71,7 @@ public class UserController {
 		}
 	}
 	
-	@GetMapping("/create/{userid}")
+	@GetMapping("/signUp/id/{userid}")
 	@ApiOperation(value = "아이디 중복 검사", notes = "<strong>아이디와 패스워드</strong>를 통해 회원가입 한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),
@@ -90,6 +90,27 @@ public class UserController {
 		
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
+	
+	@GetMapping("/signUp/nickname/{nickname}")
+	@ApiOperation(value = "닉네임 중복 검사", notes = "<strong>아이디와 패스워드</strong>를 통해 회원가입 한다.") 
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "성공"),
+        @ApiResponse(code = 401, message = "인증 실패"),
+        @ApiResponse(code = 404, message = "사용자 없음"),
+        @ApiResponse(code = 500, message = "서버 오류")
+    })
+	public ResponseEntity<? extends BaseResponseBody> checkNickname(@PathVariable String nickname) {
+		
+		
+//		System.out.println("아이디 중복 검사");
+		//임의로 리턴된 User 인스턴스. 현재 코드는 회원 가입 성공 여부만 판단하기 때문에 굳이 Insert 된 유저 정보를 응답하지 않음.
+		boolean check = userService.checkNickName(nickname);
+		if(!check)
+			return ResponseEntity.status(500).body(BaseResponseBody.of(500, "중복된 닉네임"));
+		
+		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
+	}
+	
 	
 	@GetMapping("/me")
 	@ApiOperation(value = "회원 본인 정보 조회", notes = "로그인한 회원 본인의 정보를 응답한다.") 
@@ -179,7 +200,7 @@ public class UserController {
 
 	}
 	
-	@DeleteMapping("/{userId}")
+	@DeleteMapping("/delete/{userId}")
 	@ApiOperation(value = "회원 탈퇴", notes = "로그인한 회원 본인의 정보를 삭제한다.") 
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "성공"),
