@@ -1,28 +1,17 @@
 <template>
-  <div class="flex flex-col gap-4 pb-12">
-    <div class="">
-      <div class="h-52 w-full flex bg-gray-200" v-if="!access_token">
-        <p class="m-auto">
-          <router-link class="signup-span" :to="{ name: 'Signup' }"
-            >회원가입</router-link
-          >
-          후 더 많은 서비스를 이용해보세요!
-        </p>
-      </div>
-      <div class="pb-4">
-        <p class="text-left p-4">추천도서</p>
-        <div v-if="!access_token" class="h-60 flex">
-          <p class="m-auto">로그인 후 사용할 수 있는 기능입니다.</p>
-        </div>
-        <div v-else class="">
-          <Carousel :bookList="recList" class="" />
-        </div>
-      </div>
-    </div>
-    <div class="pb-4">
-      <p class="text-left p-4">어떤 도서</p>
-      <Carousel :bookList="randomList" />
-    </div>
+  <div class="flex flex-col gap-4 pb-12 flexflex-wrap ">
+    <button class="mx-11 py-2 px-3 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700">
+      <router-link class="signup-span" :to="{ name: 'Signin' }">
+        로그인
+      </router-link>
+    </button>
+  </div>
+  <div class="flex flex-col gap-4 pb-12 flexflex-wrap ">
+    <button class="mx-11 py-2 px-3 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700">
+      <router-link class="signup-span" :to="{ name: 'Signup' }">
+        회원가입
+      </router-link>
+    </button>
   </div>
 </template>
 
@@ -61,7 +50,70 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.signup-span {
-  @apply underline hover:text-blue-700 cursor-pointer;
+@font-face {
+  font-family: "InfinitySans-RegularA1";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+//class가 4개 이상이면 tailwind로 apply해주기
+* {
+  font-family: "InfinitySans-RegularA1";
+}
+
+.wrapper {
+  @apply w-3/5 mx-auto pb-32;
+
+  .header {
+    @apply py-10;
+
+    h1 {
+      @apply text-3xl;
+    }
+  }
+
+  .content {
+    .input-form {
+      @apply my-4 relative rounded-xl;
+
+      .input {
+        @apply border border-gray-200 focus:outline-none rounded-2xl focus:border-gray-500 focus:shadow-sm w-full p-3 h-14 shadow-md;
+      }
+
+      input::placeholder {
+        color: transparent;
+      }
+      input:focus,
+      input:not(:placeholder-shown) {
+        @apply pt-8;
+      }
+      input:focus ~ label,
+      input:not(:placeholder-shown) ~ label {
+        @apply opacity-75 scale-75 -translate-y-3 translate-x-1;
+      }
+
+      .label {
+        @apply absolute top-0 left-0 px-3 py-4 h-full pointer-events-none transform origin-left transition-all duration-100 ease-in-out;
+      }
+    }
+  }
+
+  .signin-button {
+    @apply w-20 h-10 bg-gray-400 rounded-md text-white my-12 pointer-events-none shadow-md;
+    // background-color: saddlebrown;
+  }
+  .signin-button.active {
+    @apply bg-blue-500  pointer-events-auto;
+  }
+
+  .signup-button {
+    @apply text-base;
+
+    .signup-span {
+      @apply underline hover:text-blue-700 cursor-pointer;
+    }
+  }
 }
 </style>

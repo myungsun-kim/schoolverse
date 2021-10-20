@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import Footer from "@/components/Footer.vue"
+// import Footer from "@/components/Footer.vue"
 import SearchBar from "@/components/SearchBar.vue"
 
 export default {
   name: "AccountsLayout",
-  components: { Footer, SearchBar },
+  components: { SearchBar },
   setup() {
     return {}
   },
@@ -23,10 +23,13 @@ export default {
 
 <style lang="scss" scoped>
 .accounts-wrapper {
+  background-image: url('../assets/classroom.jpg');
+  background-size:100%;
+  opacity:0.5!important;
   background-color: #f0e5de;
 
   section {
-    @apply min-h-screen mx-auto shadow-2xl sm:w-full lg:w-2/5;
+    @apply w-full h-full min-h-screen mx-auto;
   }
 }
 </style>
