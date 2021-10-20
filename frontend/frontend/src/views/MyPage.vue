@@ -249,7 +249,6 @@
       <!--찜한 도서-->
       <div class="likedbook-list">
         <p class="likedbook-list-title">찜한도서❤</p>
-        <Carousel :bookList="likeList" />
       </div>
 
       <!--작성한 리뷰-->
@@ -280,14 +279,12 @@
 import { useStore } from "vuex"
 import { reactive, ref } from "@vue/reactivity"
 import { onBeforeMount, computed } from "@vue/runtime-core"
-import Carousel from "@/components/Carousel.vue"
 import router from "@/router"
 import StarRating from "vue-star-rating"
 
 export default {
   name: "MyPage",
   components: {
-    Carousel,
     StarRating
   },
   setup() {

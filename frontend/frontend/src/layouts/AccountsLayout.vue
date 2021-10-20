@@ -3,18 +3,18 @@
     <section>
       <SearchBar />
       <router-view />
-      <Footer v-if="$route.fullPath.includes('sign')" />
+      <!-- <Footer v-if="$route.fullPath.includes('sign')" /> -->
     </section>
   </div>
 </template>
 
 <script>
-import Footer from "@/components/Footer.vue"
+// import Footer from "@/components/Footer.vue"
 import SearchBar from "@/components/SearchBar.vue"
 
 export default {
   name: "AccountsLayout",
-  components: { Footer, SearchBar },
+  components: { SearchBar },
   setup() {
     return {}
   },

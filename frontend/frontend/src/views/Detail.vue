@@ -120,13 +120,11 @@ import { useStore } from "vuex"
 import { computed, onBeforeMount } from "vue"
 import { reactive, ref } from "@vue/reactivity"
 import { useRouter } from "vue-router"
-import ReviewWrite from "../components/ReviewWrite.vue"
 import StarRating from "vue-star-rating"
 
 export default {
   name: "Detail",
   components: {
-    ReviewWrite,
     StarRating,
   },
   setup() {
