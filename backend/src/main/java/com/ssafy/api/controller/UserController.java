@@ -40,7 +40,7 @@ import springfox.documentation.annotations.ApiIgnore;
  */
 @Api(value = "유저 API", tags = {"User"})
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/users")
 public class UserController {
 	
 	@Autowired
@@ -128,6 +128,7 @@ public class UserController {
 		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
 		// 아이디를 불러옴
 		String userId = userDetails.getUsername();
+
 		User user = userService.getUserByUserId(userId);
 		
 		return ResponseEntity.status(200).body(UserRes.of(user));
@@ -162,7 +163,7 @@ public class UserController {
 		return ResponseEntity.status(500).body(BaseResponseBody.of(500, "수정 불가"));
 	}
 	
-	@PostMapping("/check")
+	@GetMapping("/check")
 	@ApiOperation(value = "회원 본인 정보 조회 권한", notes = "로그인한 회원 본인의 정보를 권한이 있는지 확인한다.") 
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "성공"),
