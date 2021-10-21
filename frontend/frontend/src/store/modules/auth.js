@@ -28,10 +28,11 @@ export const auth = {
     signUp({ commit }, userInfo) {
       axios({
         method: "post",
-        url: '/users/signup/',
+        // url: '/users/signup/',
+        url: "http://localhost:8080/users/signUp",
         // url: `${BASEURL}/api/users/signup/`,
         data: {
-          userId: userInfo.userId,
+          id: userInfo.userId,
           nickname: userInfo.nickname,
           password: userInfo.password,
         },
