@@ -3,7 +3,7 @@
     <section>
       <SearchBar />
       <router-view />
-      <Footer v-if="$route.fullPath.includes('sign')" />
+      <!-- <Footer v-if="$route.fullPath.includes('sign')" /> -->
     </section>
   </div>
 </template>
@@ -23,9 +23,9 @@ export default {
 
 <style lang="scss" scoped>
 .accounts-wrapper {
-  background-image: url('../assets/classroom.jpg');
+  background-image: url('../assets/classroom.png');
   background-size:100%;
-  opacity:0.5!important;
+  // opacity:0.5!important;
   background-color: #f0e5de;
 
   section {
