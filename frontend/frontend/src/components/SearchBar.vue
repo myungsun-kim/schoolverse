@@ -28,8 +28,8 @@ export default {
   setup() {
     const store = useStore()
     const router = useRouter()
-    const activeSignin = localStorage.getItem("access_token")
-    const refresh = localStorage.getItem("refresh_token")
+    const activeSignin = localStorage.getItem("accessToken")
+    // const refresh = localStorage.getItem("refresh_token")
 
     const signin = () => {
       router.push({ name: "Signin" })
@@ -37,8 +37,8 @@ export default {
 
     const signout = () => {
       // store.dispatch("auth/signout", refresh)
-      localStorage.removeItem("access_token")
-      localStorage.removeItem("refresh_token")
+      localStorage.removeItem("accessToken")
+      // localStorage.removeItem("refresh_token")
       router.replace({ name: "Home" })
     }
 

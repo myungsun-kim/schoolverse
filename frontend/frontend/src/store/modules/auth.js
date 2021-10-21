@@ -11,11 +11,11 @@ export const auth = {
   }),
   mutations: {
     SET_USERINFO(state, value) {
-      state.userInfo = value.user
-      localStorage.setItem("pk", value.user.pk)
-      localStorage.setItem("userInfo", JSON.stringify(value.user))
-      localStorage.setItem("access_token", value.access_token)
-      localStorage.setItem("refresh_token", value.refresh_token)
+      // state.userInfo = value.user
+      // localStorage.setItem("pk", value.user.pk)
+      // localStorage.setItem("userInfo", JSON.stringify(value.user))
+      localStorage.setItem("accessToken", value.accessToken)
+      // localStorage.setItem("refresh_token", value.refresh_token)
     },
     // 관심분야 책 리스트 불러오기
     SET_BOOKS(state, value) {
@@ -39,7 +39,7 @@ export const auth = {
       })
         .then((response) => {
           console.log(response.status)
-          commit("SET_USERINFO", response.data)
+          // commit("SET_USERINFO", response.data)
           alert("회원가입이 완료됐습니다")
           router.replace({ name: "Signin" })
         })
@@ -48,19 +48,20 @@ export const auth = {
         })
     },
     // 로그인
-    signin({ commit }, signinForm) {
+    signIn({ commit }, signinForm) {
       axios({
         method: "post",
         // url: `${BASEURL}/api/accounts/login/`,
-        url: `auth/login/`,
+        url: `http://localhost:8080/auth/login/`,
         data: {
-          userId: signinForm.id,
+          id: signinForm.id,
           password: signinForm.password,
         },
       })
         .then((response) => {
+          console.log(response.status)
           commit("SET_USERINFO", response.data)
-          router.replace({ name: "Home" })
+          router.replace({ name: "main" })
         })
         .catch((error) => {
           console.error(error)

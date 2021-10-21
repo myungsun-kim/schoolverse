@@ -19,8 +19,8 @@ export default {
   setup() {
     const store = useStore()
     const router = useRouter()
-    const activeSignin = localStorage.getItem("access_token")
-    const refresh = localStorage.getItem("refresh_token")
+    const activeSignin = localStorage.getItem("accessToken")
+    // const refresh = localStorage.getItem("refresh_token")
 
     const signin = () => {
       router.push({ name: "Signin" })
