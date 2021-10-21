@@ -3,7 +3,7 @@
     <section>
       <SearchBar />
       <router-view />
-      <Footer v-if="$route.fullPath.includes('sign')" />
+      <!-- <Footer v-if="$route.fullPath.includes('sign')" /> -->
     </section>
   </div>
 </template>

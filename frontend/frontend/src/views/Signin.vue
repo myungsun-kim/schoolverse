@@ -7,7 +7,7 @@
           type="text"
           name="signin-id"
           class="input"
-          placeholder="이메일을 입력해주세요"
+          placeholder="아이디를 입력해주세요"
           v-model="signinForm.id"
         />
         <label for="email" class="label">아이디</label>
@@ -68,7 +68,7 @@ export default {
     const isActive = ref(false)
 
     const signin = () => {
-      store.dispatch("auth/signin", signinForm)
+      store.dispatch("auth/login", signinForm)
     }
 
     const isValidate = () => {

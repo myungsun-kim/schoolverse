@@ -6,6 +6,7 @@ export const auth = {
   namespaced: true,
   state: () => ({
     userInfo: null,
+    redupIdCheck: null,
     books: [],
   }),
   mutations: {
@@ -23,25 +24,23 @@ export const auth = {
   },
   getters: {},
   actions: {
-    // 회원가입
+    // 회원가입(수정)
     signUp({ commit }, userInfo) {
       axios({
         method: "post",
-        url: `${BASEURL}/api/accounts/signup/`,
+        url: '/users/signup/',
+        // url: `${BASEURL}/api/users/signup/`,
         data: {
-          username: userInfo.username,
-          password1: userInfo.password,
-          password2: userInfo.password2,
-          email: userInfo.email,
-          last_name: userInfo.last_name,
-          first_name: userInfo.first_name,
+          userId: userInfo.userId,
+          nickname: userInfo.nickname,
+          password: userInfo.password,
         },
       })
         .then((response) => {
           console.log(response.status)
           commit("SET_USERINFO", response.data)
           alert("회원가입이 완료됐습니다")
-          router.replace({ name: "Register" })
+          router.replace({ name: "Signin" })
         })
         .catch((error) => {
           console.error(error)
@@ -51,9 +50,10 @@ export const auth = {
     signin({ commit }, signinForm) {
       axios({
         method: "post",
-        url: `${BASEURL}/api/accounts/login/`,
+        // url: `${BASEURL}/api/accounts/login/`,
+        url: `auth/login/`,
         data: {
-          username: signinForm.id,
+          userId: signinForm.id,
           password: signinForm.password,
         },
       })
@@ -64,6 +64,26 @@ export const auth = {
         .catch((error) => {
           console.error(error)
           alert("아이디와 비밀번호를 확인해주세요")
+        })
+    },
+    // 아이디 중복확인
+    redupId({ commit }, redupIdForm) {
+      axios({
+        method: "get",
+        // url: `${BASEURL}/api/accounts/login/`,
+        url: `users/signUp/id/${redupIdForm.id}`,
+        // data: {
+        //   userId: redupIdForm.id,
+        // },
+      })
+        .then((response) => {
+          commit("SET_USERINFO", response.data)
+          alert("사용 가능한 아이디 입니다.")
+          // router.replace({ name: "Home" })
+        })
+        .catch((error) => {
+          console.error(error)
+          alert("이미 존재하는 아이디 입니다.")
         })
     },
     // 로그아웃

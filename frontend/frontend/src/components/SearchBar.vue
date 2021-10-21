@@ -1,12 +1,9 @@
 <template>
-  <div class="search-bar bg-gray-300">
+  <div class="search-bar bg-yellow-50">
     <div class="top-content">
       <router-link :to="{ name: 'Home' }">
         <div class="flex">
-          <span class="material-icons-outlined my-auto text-3xl">
-            menu_book
-          </span>
-          <p class="my-auto text-2xl">프로젝트 명</p>
+          <p class="my-auto text-2xl">name</p>
         </div></router-link
       >
       <div class="btn-group">
@@ -14,27 +11,7 @@
         <button class="sign signout-btn" @click="signout" v-if="activeSignin">
           로그아웃
         </button>
-        <button v-else class="sign signin-btn" @click="signin">로그인</button>
       </div>
-    </div>
-    <div
-      class="bottom-content pb-4"
-      v-if="
-        $route.fullPath.includes('search') || $route.fullPath.includes('detail')
-      "
-    >
-      <input
-        class="search-input"
-        type="text"
-        placeholder="도서명을 입력하세요"
-        v-model="searchInput"
-      />
-      <span
-        class="material-icons-outlined my-auto pl-2 text-3xl cursor-pointer"
-        @click="searchBook"
-      >
-        search
-      </span>
     </div>
   </div>
 </template>
@@ -54,28 +31,19 @@ export default {
     const activeSignin = localStorage.getItem("access_token")
     const refresh = localStorage.getItem("refresh_token")
 
-    const searchInput = ref("")
-
     const signin = () => {
       router.push({ name: "Signin" })
     }
 
     const signout = () => {
-      store.dispatch("auth/signout", refresh)
+      // store.dispatch("auth/signout", refresh)
+      localStorage.removeItem("access_token")
+      localStorage.removeItem("refresh_token")
+      router.replace({ name: "Home" })
     }
 
-    const searchBook = () => {
-      const bookItem = {
-        word: searchInput.value,
-        access_token: localStorage.getItem("access_token"),
-      }
-      store.dispatch("search/setSelected", "search")
-      store.dispatch("search/getBookList", bookItem)
 
-      router.push({ name: "Search" })
-    }
-
-    return { signin, signout, activeSignin, searchInput, searchBook }
+    return { signin, signout, activeSignin }
   },
 }
 </script>
