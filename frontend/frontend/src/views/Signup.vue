@@ -7,6 +7,14 @@
       <div class="btn-group">
         <div class="input-form grid grid-cols-12 gap-4">
           <input
+            v-if="redupCheckId==true"
+            type="text"
+            class="input col-span-10"
+            v-model="userInfo.userId"
+            disabled
+          />
+          <input
+            v-else
             type="text"
             class="input col-span-10"
             v-model="userInfo.userId"
@@ -26,6 +34,14 @@
       <div class="btn-group">
         <div class="input-form grid grid-cols-12 gap-4">
           <input
+            v-if="redupCheckNickname==true"
+            type="text"
+            class="input col-span-10"
+            v-model="userInfo.nickname"
+            disabled
+          />
+          <input
+            v-else
             type="nickname"
             class="input col-span-10"
             v-model="userInfo.nickname"
