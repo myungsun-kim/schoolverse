@@ -13,7 +13,7 @@ import PasswordReset from "../views/PasswordReset.vue"
 // import Member from "../views/Member.vue"
 import Detail from "../views/Detail.vue"
 import Unity from "../views/Unity.vue"
-
+import Test from "../views/Test.vue"
 
 const requireAuth = () => (from, to, next) => {
   const isAuthenticated = localStorage.getItem("accessToken")
@@ -75,6 +75,11 @@ const routes = [
       //   name: "Member",
       //   component: Member,
       // },,
+      {
+        path: "test",
+        name: "Test",
+        component: Test,
+      },
     ],
   },
   {
