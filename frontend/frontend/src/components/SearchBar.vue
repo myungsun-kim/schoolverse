@@ -1,15 +1,18 @@
 <template>
-  <div class="search-bar bg-yellow-50">
+  <div class="search-bar bg-gray-200">
     <div class="top-content">
       <router-link :to="{ name: 'Home' }">
         <div class="flex">
-          <p class="my-auto text-2xl">name</p>
+          <p class="my-auto text-xl">스쿨버스</p>
         </div></router-link
       >
       <div class="btn-group">
         <!-- v-if else는 같은 div안에 있어야 친구가 될 수 있다.. -->
         <button class="sign signout-btn" @click="signout" v-if="activeSignin">
           로그아웃
+        </button>
+        <button class="sign signout-btn mx-3" @click="userInfo" v-if="activeSignin">
+          회원정보
         </button>
       </div>
     </div>
@@ -28,8 +31,8 @@ export default {
   setup() {
     const store = useStore()
     const router = useRouter()
-    const activeSignin = localStorage.getItem("access_token")
-    const refresh = localStorage.getItem("refresh_token")
+    const activeSignin = localStorage.getItem("accessToken")
+    // const refresh = localStorage.getItem("refresh_token")
 
     const signin = () => {
       router.push({ name: "Signin" })
@@ -37,13 +40,17 @@ export default {
 
     const signout = () => {
       // store.dispatch("auth/signout", refresh)
-      localStorage.removeItem("access_token")
-      localStorage.removeItem("refresh_token")
+      localStorage.removeItem("accessToken")
+      // localStorage.removeItem("refresh_token")
       router.replace({ name: "Home" })
     }
 
+    const userInfo = () => {
+      router.push({ name: "MyPage" })
+    }
 
-    return { signin, signout, activeSignin }
+
+    return { signin, signout, userInfo, activeSignin }
   },
 }
 </script>

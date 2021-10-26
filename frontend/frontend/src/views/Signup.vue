@@ -7,6 +7,14 @@
       <div class="btn-group">
         <div class="input-form grid grid-cols-12 gap-4">
           <input
+            v-if="redupCheckId==true"
+            type="text"
+            class="input col-span-10"
+            v-model="userInfo.userId"
+            disabled
+          />
+          <input
+            v-else
             type="text"
             class="input col-span-10"
             v-model="userInfo.userId"
@@ -16,7 +24,8 @@
             autocomplete="off"
           />
           <label for="email" class="label">아이디</label>
-          <button class="btn mt-1" @click="redupId">중복확인</button>
+          <button class="btn ok" @click="redupId" v-if="redupCheckId==false">중복확인</button>
+          <button class="btn pointer-events-none" v-else>중복확인</button>
         </div>
         <!-- <p class="text-red-500 pt-1" v-if="usernameStatus === false">
           5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.
@@ -25,6 +34,14 @@
       <div class="btn-group">
         <div class="input-form grid grid-cols-12 gap-4">
           <input
+            v-if="redupCheckNickname==true"
+            type="text"
+            class="input col-span-10"
+            v-model="userInfo.nickname"
+            disabled
+          />
+          <input
+            v-else
             type="nickname"
             class="input col-span-10"
             v-model="userInfo.nickname"
@@ -33,7 +50,8 @@
             @focus="emailClear"
           />
           <label for="email" class="label">닉네임</label>
-          <button class="btn mt-1">중복확인</button>
+          <button class="btn ok" @click="redupNickname" v-if="redupCheckNickname==false">중복확인</button>
+          <button class="btn pointer-events-none" v-else>중복확인</button>
         </div>
         <p class="text-red-500 pt-1" v-if="emailStatus === false">
           닉네임을 다시 확인해주세요.
@@ -76,25 +94,28 @@
         </form>
       </div>
       
-      <p class="text-red-500 pt-1" v-if="nameStatus === false">
+      <!-- <p class="text-red-500 pt-1" v-if="nameStatus === false">
         이름을 정확히 입력해주세요.
-      </p>
+      </p> -->
       <!-- <p class="text-red-500 pt-1" v-if="pwCheck === false">
           비밀번호가 일치하지 않습니다.
         </p> -->
       <div class="btn-group">
-        <button
-          class="btn pointer-events-none"
+        <button @click="signUp" class="btn ok" 
           v-if="
-            usernameStatus === '' &&
-            pwStatus === '' &&
-            pwStatus === '' &&
-            emailStatus === ''
-          "
-        >
+            userInfo.password2 == userInfo.password &&
+            pwCheck === true &&
+            pwStatus === true &&
+            redupCheckNickname == true &&
+            redupCheckId == true
+          ">회원가입</button>
+        <button
+            class="btn pointer-events-none"
+            v-else
+          >
           회원가입
         </button>
-        <button
+        <!-- <button
           class="btn nope"
           v-else-if="
             usernameStatus === false ||
@@ -104,8 +125,8 @@
           "
         >
           회원가입
-        </button>
-        <button @click="signUp" class="btn ok" v-else>회원가입</button>
+        </button> -->
+        
       </div>
     </div>
   </div>
@@ -115,6 +136,8 @@
 import { useStore } from "vuex"
 import { reactive, ref } from "@vue/reactivity"
 import router from "@/router"
+import { computed } from "vue"
+
 
 export default {
   name: "Signup",
@@ -127,6 +150,15 @@ export default {
     const pwCheck = ref("")
     const usernameStatus = ref("")
     const nameStatus = ref("")
+    
+    // const redupCheckId = store.state.auth.redupIdCheck
+    const redupCheckId = computed(() => {
+      return store.state.auth.redupIdCheck
+    })
+    
+    const redupCheckNickname = computed(() => {
+      return store.state.auth.redupNicknameCheck
+    })
 
     const clear = () => {
       usernameStatus.value = true
@@ -170,29 +202,6 @@ export default {
       }
     }
 
-    // const emailValid = () => {
-    //   if (
-    //     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}/.test(
-    //       userInfo.email
-    //     )
-    //   ) {
-    //     emailStatus.value = true
-    //   } else {
-    //     emailStatus.value = false
-    //   }
-    // }
-
-    const nameValid = () => {
-      if (
-        /^[가-힣a-zA-Z]/.test(userInfo.last_name) &&
-        /^[가-힣a-zA-Z]/.test(userInfo.first_name)
-      ) {
-        nameStatus.value = true
-      } else {
-        nameStatus.value = false
-      }
-    }
-
     const userInfo = reactive({
       userId: "",
       nickname: "",
@@ -207,6 +216,11 @@ export default {
       store.dispatch("auth/redupId", userInfo)
     }
 
+    // 닉네임 중복확인
+    const redupNickname = () => {
+      store.dispatch("auth/redupNickname", userInfo)
+    }
+
     return {
       userInfo,
       signUp,
@@ -219,12 +233,13 @@ export default {
       checkClear,
       passwordSame,
       pwCheck,
-      // emailValid,
       emailStatus,
       emailClear,
-      nameValid,
       nameStatus,
       redupId,
+      redupCheckId,
+      redupNickname,
+      redupCheckNickname,
     }
   },
 }

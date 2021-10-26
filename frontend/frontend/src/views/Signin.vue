@@ -68,7 +68,7 @@ export default {
     const isActive = ref(false)
 
     const signin = () => {
-      store.dispatch("auth/login", signinForm)
+      store.dispatch("auth/signIn", signinForm)
     }
 
     const isValidate = () => {
