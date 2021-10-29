@@ -6,16 +6,25 @@ export const auth = {
   namespaced: true,
   state: () => ({
     userInfo: null,
-    redupIdCheck: null,
+    redupIdCheck: false,
+    redupNicknameCheck: false,
     books: [],
   }),
   mutations: {
+    SET_REDUPID(state, value) {
+      state.redupIdCheck = true
+      console.log('중복체크', state.redupIdCheck)
+    },
+    SET_REDUPNICKNAME(state, value) {
+      state.redupNicknameCheck = true
+      console.log('중복체크', state.redupNicknameCheck)
+    },
     SET_USERINFO(state, value) {
-      state.userInfo = value.user
-      localStorage.setItem("pk", value.user.pk)
-      localStorage.setItem("userInfo", JSON.stringify(value.user))
-      localStorage.setItem("access_token", value.access_token)
-      localStorage.setItem("refresh_token", value.refresh_token)
+      // state.userInfo = value.user
+      // localStorage.setItem("pk", value.user.pk)
+      // localStorage.setItem("userInfo", JSON.stringify(value.user))
+      localStorage.setItem("accessToken", value.accessToken)
+      // localStorage.setItem("refresh_token", value.refresh_token)
     },
     // 관심분야 책 리스트 불러오기
     SET_BOOKS(state, value) {
@@ -39,7 +48,7 @@ export const auth = {
       })
         .then((response) => {
           console.log(response.status)
-          commit("SET_USERINFO", response.data)
+          // commit("SET_USERINFO", response.data)
           alert("회원가입이 완료됐습니다")
           router.replace({ name: "Signin" })
         })
@@ -48,19 +57,20 @@ export const auth = {
         })
     },
     // 로그인
-    signin({ commit }, signinForm) {
+    signIn({ commit }, signinForm) {
       axios({
         method: "post",
         // url: `${BASEURL}/api/accounts/login/`,
-        url: `auth/login/`,
+        url: `http://localhost:8080/auth/login/`,
         data: {
-          userId: signinForm.id,
+          id: signinForm.id,
           password: signinForm.password,
         },
       })
         .then((response) => {
+          console.log(response.status)
           commit("SET_USERINFO", response.data)
-          router.replace({ name: "Home" })
+          router.replace({ name: "main" })
         })
         .catch((error) => {
           console.error(error)
@@ -69,16 +79,18 @@ export const auth = {
     },
     // 아이디 중복확인
     redupId({ commit }, redupIdForm) {
+      console.log(redupIdForm)
       axios({
         method: "get",
         // url: `${BASEURL}/api/accounts/login/`,
-        url: `users/signUp/id/${redupIdForm.id}`,
+        url: `http://localhost:8080/users/signUp/id/${redupIdForm.userId}`,
         // data: {
         //   userId: redupIdForm.id,
         // },
       })
         .then((response) => {
-          commit("SET_USERINFO", response.data)
+          console.log(response.data)
+          commit("SET_REDUPID", response.data)
           alert("사용 가능한 아이디 입니다.")
           // router.replace({ name: "Home" })
         })
@@ -87,6 +99,38 @@ export const auth = {
           alert("이미 존재하는 아이디 입니다.")
         })
     },
+    // 닉네임 중복확인
+    redupNickname({ commit }, redupNicknameForm) {
+      console.log('닉네임', redupNicknameForm)
+      axios({
+        method: "get",
+        url: `http://localhost:8080/users/signUp/nickname/${redupNicknameForm.nickname}`,
+
+      })
+        .then((response) => {
+          console.log(response.data)
+          commit("SET_REDUPNICKNAME", response.data)
+          alert("사용 가능한 닉네임 입니다.")
+          // router.replace({ name: "Home" })
+        })
+        .catch((error) => {
+          console.error(error)
+          alert("이미 존재하는 닉네임 입니다.")
+        })
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
     // 로그아웃
     signout({ commit }, refresh) {
       axios({

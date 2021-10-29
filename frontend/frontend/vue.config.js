@@ -1,12 +1,12 @@
-// module.exports = {
-//   devServer: {
-//     overlay: true,
-//   },
-//   lintOnSave: false,
-// }
+module.exports = {
+  devServer: {
+    overlay: true,
+  },
+  lintOnSave: false,
+}
 
 // Vue3 관련 설정 파일
-module.exports = {
+// module.exports = {
   // devServer: {
   //   https: true,
   //   port: 8083,
@@ -30,12 +30,12 @@ module.exports = {
   //   historyApiFallback: true,
   //   hot: true
   // },
-  css: {
-    requireModuleExtension: false, // import 시에 경로에 .module 포함 안해도 됨.
-  },
-  // transpileDependencies: [
-  //   'element-plus'
-  // ],
-  lintOnSave: false,
-  outputDir: "../backend/src/main/resources/dist",
-}
+//   css: {
+//     requireModuleExtension: false, // import 시에 경로에 .module 포함 안해도 됨.
+//   },
+//   // transpileDependencies: [
+//   //   'element-plus'
+//   // ],
+//   lintOnSave: false,
+//   outputDir: "../backend/src/main/resources/dist",
+// }
