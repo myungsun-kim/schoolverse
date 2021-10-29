@@ -1,5 +1,6 @@
 <template>
   <div class="btn-group h-100 text-8xl h-full min-h-screen grid justify-items-center content-center">
+    <button class="sign" @click="info" v-if="activeSignin"><p class="text-3xl py-5">스쿨버스란?</p></button>
     <button class="sign" @click="startUnity" v-if="activeSignin"><p class="text-3xl py-5">시작하기</p></button>
   </div>
 
@@ -24,8 +25,12 @@ export default {
       router.push({ name: "Unity" })
     }
 
+    const info = () => {
+      router.push({ name: "Info" })
+    }
 
-    return {startUnity, activeSignin }
+
+    return {startUnity, info, activeSignin }
   },
 }
 </script>
