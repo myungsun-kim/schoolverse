@@ -13,6 +13,7 @@ import PasswordReset from "../views/PasswordReset.vue"
 // import Member from "../views/Member.vue"
 import Detail from "../views/Detail.vue"
 import Unity from "../views/Unity.vue"
+import Info from "../views/Info.vue"
 
 
 const requireAuth = () => (from, to, next) => {
@@ -70,11 +71,11 @@ const routes = [
         name: "Unity",
         component: Unity,
       },
-      // {
-      //   path: "/member",
-      //   name: "Member",
-      //   component: Member,
-      // },,
+      {
+        path: "/info",
+        name: "Info",
+        component: Info,
+      },
     ],
   },
   {
