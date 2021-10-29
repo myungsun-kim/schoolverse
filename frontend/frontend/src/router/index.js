@@ -17,7 +17,6 @@ import Test from "../../public/tmp/Test.vue"
 // import Test from "../../unity/Test.vue"
 import Info from "../views/Info.vue"
 
-
 const requireAuth = () => (from, to, next) => {
   const isAuthenticated = localStorage.getItem("accessToken")
   if (isAuthenticated) return next()
@@ -82,6 +81,7 @@ const routes = [
         path: "test",
         name: "Test",
         component: Test,
+      },
       {
         path: "/info",
         name: "Info",
