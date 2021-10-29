@@ -13,7 +13,8 @@ import PasswordReset from "../views/PasswordReset.vue"
 // import Member from "../views/Member.vue"
 import Detail from "../views/Detail.vue"
 import Unity from "../views/Unity.vue"
-import Test from "../views/Test.vue"
+import Test from "../../public/tmp/Test.vue"
+// import Test from "../../unity/Test.vue"
 
 const requireAuth = () => (from, to, next) => {
   const isAuthenticated = localStorage.getItem("accessToken")
