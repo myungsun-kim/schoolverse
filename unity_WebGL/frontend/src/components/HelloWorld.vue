@@ -1,14 +1,4 @@
 <template>
-  <!-- <div class="hello">
-    <h1>{{ msg }}</h1>
-    <router-link to="/test">ddddddddddddd</router-link>
-  </div> -->
-  <!-- <unity
-    src="../../unity/Build/unity.symbols.json"
-    width="1000"
-    height="600"
-    unityLoader="../../unity/Build/unity.loader.js"
-  ></unity> -->
   <unity
     src="./tmp/Build/tmp.json"
     width="1000"
