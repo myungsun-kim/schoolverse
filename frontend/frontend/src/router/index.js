@@ -13,12 +13,9 @@ import PasswordReset from "../views/PasswordReset.vue"
 // import Member from "../views/Member.vue"
 import Detail from "../views/Detail.vue"
 import Unity from "../views/Unity.vue"
-<<<<<<< HEAD
-import Test from "../views/Test.vue"
-=======
+import Test from "../../public/tmp/Test.vue"
+// import Test from "../../unity/Test.vue"
 import Info from "../views/Info.vue"
-
->>>>>>> 5fae498a90c59dbb49acc8f5c3e2c1a5f7994a3d
 
 const requireAuth = () => (from, to, next) => {
   const isAuthenticated = localStorage.getItem("accessToken")
@@ -75,7 +72,6 @@ const routes = [
         name: "Unity",
         component: Unity,
       },
-<<<<<<< HEAD
       // {
       //   path: "/member",
       //   name: "Member",
@@ -85,12 +81,11 @@ const routes = [
         path: "test",
         name: "Test",
         component: Test,
-=======
+      },
       {
         path: "/info",
         name: "Info",
         component: Info,
->>>>>>> 5fae498a90c59dbb49acc8f5c3e2c1a5f7994a3d
       },
     ],
   },
