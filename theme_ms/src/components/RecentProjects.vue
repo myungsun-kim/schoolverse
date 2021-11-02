@@ -9,9 +9,22 @@
         </base-heading>
 
         <base-text class="mb-5">
-          Lorem ipsum dolor sit amet, consectetur adipi<br />
-          scin elit. Etiam vulputate augue vel felis gravida<br />
-          porta. Lorem ipsum dolor sit amet.
+          <input type="text" placeholder="ID" id="id" name="id" v-model="id" />
+          <input
+            type="text"
+            placeholder="Nickname"
+            id="nickname"
+            name="nickname"
+            v-model="nickname"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            id="password"
+            name="password"
+            v-model="password"
+          />
+          <button @click="register">클릭</button>
         </base-text>
 
         <v-card color="secondary">
@@ -43,11 +56,37 @@
 </template>
 
 <script>
+import http from "@/util/http-common";
+
 export default {
   name: "RecentProjects",
 
   data: () => ({
-    projects: ["project1", "project2", "project3", "project4"]
-  })
+    projects: ["project1", "project2", "project3", "project4"],
+    id: "",
+    nickname: "",
+    password: ""
+  }),
+  methods: {
+    register() {
+      http
+        .post("/users/signUp", {
+          // id: this.id,
+          // password: this.password,
+          // nickname: this.nickname
+          id: "ssafy222",
+          password: "Qwer!234",
+          nickname: "ssafy222"
+        })
+        .then(({ data }) => {
+          console.log(data);
+          if (data.statusCode == 200) {
+            alert("회원가입이 완료되었습니다");
+          } else {
+            alert("회원가입 실패");
+          }
+        });
+    }
+  }
 };
 </script>
