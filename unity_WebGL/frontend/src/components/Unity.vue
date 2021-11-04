@@ -10,10 +10,10 @@
 <script>
 import Unity from "vue-unity-webgl";
 export default {
-  name: "HelloWorld",
-  props: {
-    msg: String,
-  },
+  // name: "HelloWorld",
+  // props: {
+  //   msg: String,
+  // },
   components: { Unity },
 };
 </script>

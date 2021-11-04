@@ -1,10 +1,17 @@
-import Test from "@/components/Test.vue";
+// import Test from "@/components/Test.vue";
+import Unity from "@/components/Unity.vue";
 
 const routes = [
   {
-    path: "test",
-    component: Test,
-    redirect: "/test",
+    path: "/",
+    component: Unity,
+    redirect: "/",
+    children: [
+      {
+        path: "",
+        component: Unity,
+      },
+    ],
   },
 ];
 
