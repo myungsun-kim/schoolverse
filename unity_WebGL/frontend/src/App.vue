@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    <Nav 
-      :token="token"
-      @logout="logout"
-    />
+    <Nav :token="token" @logout="logout" />
     <router-view></router-view>
   </div>
 </template>
@@ -15,16 +12,14 @@ export default {
   components: { Nav },
   data() {
     return {
-      token: localStorage.getItem("token")
-    }
+      token: localStorage.getItem("token"),
+    };
   },
   methods: {
-    logout(){
-      localStorage.removeItem("token")
-
-    }
-  }
-  
+    logout() {
+      localStorage.removeItem("token");
+    },
+  },
 };
 </script>
 
