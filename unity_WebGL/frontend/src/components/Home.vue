@@ -1,7 +1,37 @@
 <template>
-  <div class="btn-group-vertical">
-    <button type="button" class="btn btn-lg btn-primary my-5">로그인</button>
-    <button type="button" class="btn btn-lg btn-primary mb-5">회원가입</button>
+  <div class="d-flex align-items-center justify-content-center" style="height:100vh">
+    <div class="vertical" v-if="!token">
+        <div class="my-box">
+          <p class="fs-3 mb-0">
+            <router-link to="/logIn" class="router-text">
+              로그인
+            </router-link>
+          </p>
+        </div>
+        <div class="my-box">
+          <p class="fs-3 mb-0">
+            <router-link to="/signUp" class="router-text">
+              회원가입
+            </router-link>
+            </p>
+        </div>
+    </div>
+    <div class="vertical" v-else>
+        <div class="my-box">
+          <p class="fs-3 mb-0">
+            <router-link to="/info" class="router-text">
+              스쿨버스란?
+            </router-link>
+          </p>
+        </div>
+        <div class="my-box">
+          <p class="fs-3 mb-0">
+            <router-link to="/unity" class="router-text">
+              시작하기
+            </router-link>
+            </p>
+        </div>
+    </div>
   </div>
 </template>
 
@@ -9,10 +39,27 @@
 
 export default {
   name: "Home",
-  // components: { Nav },
+  data(){
+    return {
+
+    }
+  },
 }
 </script>
 
 <style>
-  
+  .my-box {
+    margin : 40px; 
+    padding : 10px;
+    border : 1px solid #ADEFD1;
+    border-radius : 20px;
+    background-color: #ADEFD1;
+    width: 400px;
+    opacity: 0.7;
+  }
+  .router-text {
+    text-decoration: none;
+    color: #00203F;
+    opacity: 0.7;
+  }
 </style>

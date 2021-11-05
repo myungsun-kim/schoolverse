@@ -1,6 +1,7 @@
 // import Test from "@/components/Test.vue";
 import Unity from "@/components/Unity.vue";
 import Home from "@/components/Home.vue";
+import Info from "@/components/Info.vue";
 
 const routes = [
   {
@@ -10,6 +11,10 @@ const routes = [
   {
     path: "/unity",
     component: Unity,
+  },
+  {
+    path: "/info",
+    component: Info,
   },
 ];
 
