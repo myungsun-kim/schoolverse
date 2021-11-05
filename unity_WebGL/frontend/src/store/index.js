@@ -1,32 +1,38 @@
+import axios from "axios"
 import Vue from "vue";
 import Vuex from "vuex";
+import router from "@/router"
 // import http from "@/util/http-common";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
+  state: () =>({
+    token: ""
+  }),
   getterts: {},
-  mutations: {},
+  mutations: {
+    SET_USERINFO(state, value) {
+      state.token = localStorage.setItem("token", value.accessToken)
+    },
+  },
   actions: {
-    // redupId(context, payload){
-    //   http
-    //   .get("/users/signUp/id/${", {
-    //     id: this.id,
-    //     password: this.password,
-    //     nickname: this.nickname,
-    //     //   id: "ssafy222",
-    //     //   password: "Qwer!234",
-    //     //   nickname: "ssafy222",
-    //   })
-    //   .then(({ data }) => {
-    //     console.log(data);
-    //     if (data.statusCode == 200) {
-    //       alert("회원가입이 완료되었습니다");
-    //     } else {
-    //       alert("회원가입 실패");
-    //     }
-    //   });
-    // }
+    logIn( { commit },userInfo){
+      axios({
+        method: "post",
+        url: "http://localhost:8080/auth/login",
+        data: {
+          id: userInfo.userId,
+          password: userInfo.password,
+        },
+      })
+      .then((response) => {
+        commit("SET_USERINFO", response.data)
+        router.replace({ name: "Home" })
+      })
+      .catch(() => {
+        alert('아이디와 비밀번호를 확인해주세요')
+      })
+    }
   },
 });
