@@ -1,8 +1,11 @@
 <template>
-  <div class="wrapper">
-    <div class="content">
-      <div class="btn-group">
-        <div class="input-form grid grid-cols-12 gap-4">
+  <div
+    class="d-flex align-items-center justify-content-center"
+    style="height: 100vh"
+  >
+    <div class="vertical">
+      <div class="input-form">
+        <div>
           <input
             v-if="redupCheckId == true"
             type="text"
@@ -30,8 +33,8 @@
           5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.
         </p>
       </div>
-      <div class="btn-group">
-        <div class="input-form grid grid-cols-12 gap-4">
+      <div class="input-form">
+        <div>
           <input
             v-if="redupCheckNickname == true"
             type="text"
@@ -98,16 +101,9 @@
           </p>
         </form>
       </div>
-
-      <!-- <p class="text-red-500 pt-1" v-if="nameStatus === false">
-        이름을 정확히 입력해주세요.
-      </p> -->
-      <!-- <p class="text-red-500 pt-1" v-if="pwCheck === false">
-          비밀번호가 일치하지 않습니다.
-        </p> -->
-      <div class="btn-group">
+      <div class="register-btn">
         <button
-          @click="signUp"
+          @click="register"
           class="btn ok"
           v-if="
             userInfo.password == password2 &&
@@ -120,34 +116,7 @@
           회원가입
         </button>
         <button class="btn pointer-events-none" v-else>회원가입</button>
-        <!-- <button
-          class="btn nope"
-          v-else-if="
-            userIdStatus === false ||
-            pwCheck === false ||
-            pwStatus === false ||
-            emailStatus === false
-          "
-        >
-          회원가입
-        </button> -->
       </div>
-      <!-- <input id="id" v-model="id" type="text" placeholder="ID" name="id" />
-    <input
-      id="nickname"
-      v-model="nickname"
-      type="text"
-      placeholder="Nickname"
-      name="nickname"
-    />
-    <input
-      id="password"
-      v-model="password"
-      type="password"
-      placeholder="Password"
-      name="password"
-    />
-    <button @click="register">클릭</button> -->
     </div>
   </div>
 </template>
@@ -163,45 +132,90 @@ export default {
         password: "",
       },
       password2: "",
-      passwordValid: "",
+      redupCheckId: "",
+      redupCheckNickname: "",
       userIdStatus: "",
       emailStatus: "",
       pwStatus: "",
-      passwordSame: "",
       pwCheck: "",
     };
   },
   methods: {
     idClear() {
-      this.usernameStatus = true;
+      this.userIdStatus = true;
     },
     nicknameClear() {
-      // this.nickname="";
+      this.emailStatus = true;
     },
-    pwClear() {},
-    checkClear() {},
+    pwClear() {
+      this.pwStatus = true;
+    },
+    checkClear() {
+      this.pwCheck = true;
+    },
     userIdValid() {
       //유효성 검사
-      if (/^[A-Za-z0-9_-]{4,21}$/.test(this.id)) {
+      if (/^[A-Za-z0-9_-]{4,21}$/.test(this.userInfo.id)) {
         // if (/^[A-Za-z]{1}[A-Za-z0-9_-]{5,13}$/.test(userInfo.username)) {
         this.userIdStatus = true;
       } else {
         this.userIdStatus = false;
       }
     },
-    redupCheckId() {
-        this.$store.dispatch("redupId");
+    passwordValid() {
+      // 비밀번호 유효성 검사
+      if (
+        /(?=.*[a-zA-ZS])(?=.*?[#?!@$%^&*-]).{7,17}/.test(this.userInfo.password)
+      ) {
+        this.pwStatus = true;
+      } else {
+        this.pwStatus = false;
+      }
     },
-    redupCheckNickname() {},
+    passwordSame() {
+      // 비밀번호 확인
+      if (this.userInfo.password === this.password2) {
+        this.pwCheck = true;
+      } else {
+        this.pwCheck = false;
+      }
+    },
+    redupId() {
+      //아이디 중복 체크
+      http
+        .get("/users/signUp/id/" + this.userInfo.id)
+        .then(({ data }) => {
+          if (data.statusCode == 200) {
+            this.redupCheckId = true;
+            alert("사용 가능한 아이디입니다.");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("이미 존재하는 아이디입니다.");
+        });
+    },
+    redupNickname() {
+      //닉네임 중복 체크
+      http
+        .get("/users/signUp/nickname/" + this.userInfo.nickname)
+        .then(({ data }) => {
+          if (data.statusCode == 200) {
+            this.redupCheckNickname = true;
+            alert("사용 가능한 닉네임입니다.");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("이미 존재하는 닉네임입니다.");
+        });
+    },
     register() {
       http
         .post("/users/signUp", {
-          id: this.id,
-          password: this.password,
-          nickname: this.nickname,
-          //   id: "ssafy222",
-          //   password: "Qwer!234",
-          //   nickname: "ssafy222",
+          id: this.userInfo.id,
+          password: this.userInfo.password,
+          nickname: this.userInfo.nickname,
         })
         .then(({ data }) => {
           console.log(data);
@@ -216,64 +230,21 @@ export default {
 };
 </script>
 <style scoped>
-p {
-  @apply text-sm text-left pl-2;
+.router-text {
+  text-decoration: none;
+  color: #00203f;
+  opacity: 0.7;
 }
-
-.wrapper {
-  @apply w-1/3 mx-auto pb-32;
-
-  .header {
-    @apply py-10;
-
-    h1 {
-      @apply text-3xl;
-    }
-  }
-
-  .content {
-    .input-form {
-      @apply my-4 relative rounded-xl;
-
-      .input {
-        @apply border border-gray-200 focus:outline-none rounded-2xl focus:border-gray-500 focus:shadow-sm w-full p-3 h-14 shadow-md;
-      }
-
-      input::placeholder {
-        color: transparent;
-      }
-      input:focus,
-      input:not(:placeholder-shown) {
-        @apply pt-8;
-      }
-      input:focus ~ label,
-      input:not(:placeholder-shown) ~ label {
-        @apply opacity-75 scale-75 -translate-y-3 translate-x-1;
-      }
-
-      .label {
-        @apply absolute top-0 left-0 px-3 py-4 h-full pointer-events-none transform origin-left transition-all duration-100 ease-in-out;
-      }
-    }
-    .btn-group {
-      @apply my-8;
-
-      .btn {
-        @apply w-20 h-10 bg-gray-400 rounded-md text-white shadow-md;
-      }
-      .nope {
-        @apply bg-red-600 cursor-not-allowed;
-      }
-      .button-id {
-        @apply w-20 h-56 bg-green-200 rounded-md;
-      }
-      /* .button-nickname {
-         @apply
-       } */
-      .ok {
-        @apply bg-blue-500;
-      }
-    }
-  }
+.register-btn {
+  margin: 40px auto;
+  padding: 10px;
+  border: 1px solid #adefd1;
+  border-radius: 20px;
+  background-color: #adefd1;
+  width: 400px;
+  opacity: 0.7;
+}
+.input-form {
+  margin: 0 auto;
 }
 </style>
