@@ -30,8 +30,9 @@ export default new Vuex.Store({
       })
         .then((response) => {
           commit("SET_USERINFO", response.data);
-          console.log(response.data);
+          alert("로그인이 완료되었습니다");
           router.replace({ name: "Home" });
+          router.go();
         })
         .catch(() => {
           alert("아이디와 비밀번호를 확인해주세요");
