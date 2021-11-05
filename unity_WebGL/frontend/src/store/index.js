@@ -8,12 +8,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: () =>({
-    token: ""
   }),
   getterts: {},
   mutations: {
     SET_USERINFO(state, value) {
-      state.token = localStorage.setItem("token", value.accessToken)
+      localStorage.setItem("token", value.accessToken)
     },
   },
   actions: {
@@ -22,13 +21,15 @@ export default new Vuex.Store({
         method: "post",
         url: "http://localhost:8080/auth/login",
         data: {
-          id: userInfo.userId,
+          id: userInfo.id,
           password: userInfo.password,
         },
       })
       .then((response) => {
         commit("SET_USERINFO", response.data)
         router.replace({ name: "Home" })
+        router.go()
+        alert('로그인 성공')
       })
       .catch(() => {
         alert('아이디와 비밀번호를 확인해주세요')

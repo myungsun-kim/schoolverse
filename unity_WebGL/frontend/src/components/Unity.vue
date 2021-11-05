@@ -1,10 +1,9 @@
 <template>
-  <div class="d-flex justify-content-center my-1">
+  <div class="d-flex justify-content-center my-">
     <unity
       src="./BT4/Build/BT4.json"
-      width="1400"
-      height="870"
       unityLoader="./BT4/Build/UnityLoader.json"
+      class="unity-style mt-5"
     ></unity>
   </div>
 </template>
@@ -36,5 +35,9 @@ export default {
   }
   a {
     color: #42b983;
+  }
+  .unity-style {
+    width: 80%;
+    height: 80%;
   }
 </style>

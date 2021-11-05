@@ -5,16 +5,32 @@
         <!-- <a class="navbar-brand" href="">스쿨버스</a> -->
         <!-- <img src="../assets/schoolbus.png" alt=""> -->
         <router-link to="/" class="router-text1"> 스쿨버스 </router-link>
-        <!-- <form class="d-flex" v-if="token">          
-          <button class="btn btn-outline-success mx-3" type="submit">로그아웃</button>
-        </form> -->
+        <form class="d-flex" v-if="this.token">          
+          <button class="btn btn-outline-success mx-3" type="submit" @click="logout">로그아웃</button>
+        </form>
       </div>
     </nav>
   </div>
 </template>
 
 <script>
-export default {};
+import router from "@/router"
+export default {
+  name: "Nav",
+  date() {
+    return{
+    }
+  },
+  methods: {
+    logout() {
+      this.$emit('logout')
+      router.replace({ name: "Home" })
+    }
+  },
+  props:{
+    token: String,
+  }
+};
 </script>
 
 <style>

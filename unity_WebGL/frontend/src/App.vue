@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <Nav />
+    <Nav 
+      :token="token"
+      @logout="logout"
+    />
     <router-view></router-view>
   </div>
 </template>
@@ -10,6 +13,18 @@ import Nav from "@/components/Nav.vue";
 // import Home from "@/components/Home.vue"
 export default {
   components: { Nav },
+  data() {
+    return {
+      token: localStorage.getItem("token")
+    }
+  },
+  methods: {
+    logout(){
+      localStorage.removeItem("token")
+
+    }
+  }
+  
 };
 </script>
 

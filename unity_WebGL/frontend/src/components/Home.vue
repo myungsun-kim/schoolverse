@@ -3,8 +3,7 @@
     class="d-flex align-items-center justify-content-center"
     style="height: 100vh"
   >
-    <!-- <div class="vertical" v-if="!token"> -->
-    <div class="vertical">
+    <div class="vertical" v-if="!token">
       <div class="my-box">
         <p class="fs-3 mb-0">
           <router-link to="/logIn" class="router-text"> 로그인 </router-link>
@@ -16,8 +15,7 @@
         </p>
       </div>
     </div>
-    <!-- <div class="vertical" v-else> -->
-    <div class="vertical">
+    <div class="vertical" v-else>
       <div class="my-box">
         <p class="fs-3 mb-0">
           <router-link to="/info" class="router-text">
@@ -39,7 +37,7 @@ export default {
   name: "Home",
   data(){
     return {
-      token: "",
+      token: localStorage.getItem("token")
     }
   },
 };
