@@ -1,17 +1,24 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <Nav :token="token" @logout="logout" />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
+import Nav from "@/components/Nav.vue";
+// import Home from "@/components/Home.vue"
 export default {
-  name: "App",
-  components: {
-    HelloWorld,
+  components: { Nav },
+  data() {
+    return {
+      token: localStorage.getItem("token"),
+    };
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem("token");
+    },
   },
 };
 </script>
@@ -23,6 +30,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  background-image: url("./assets/classroom.png");
+  background-size: 100%;
+  width: 100vw;
+  height: 100vh;
+  /* margin-top: 60px; */
 }
 </style>
