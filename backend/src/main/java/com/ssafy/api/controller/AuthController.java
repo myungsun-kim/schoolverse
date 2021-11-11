@@ -65,21 +65,4 @@ public class AuthController {
 		return ResponseEntity.status(401).body(UserLoginPostRes.of(401, "Invalid Password", null));
 	}
 	
-	@GetMapping("/connect")
-	@ApiOperation(value = "회원 정보 유니티 연결", notes = "로그인된 회원의 정보를 유니티에 연결한다.") 
-    @ApiResponses({
-        @ApiResponse(code = 200, message = "성공"),
-        @ApiResponse(code = 401, message = "인증 실패"),
-        @ApiResponse(code = 404, message = "사용자 없음"),
-        @ApiResponse(code = 500, message = "서버 오류")
-    })
-	public ResponseEntity<UserRes> getUserInfo() {
-		/**
-		 * 로그인시 저장된 유저 정보 리턴
-		 */
-			
-		User user = userService.getUserByUserId(playerId);
-		
-		return ResponseEntity.status(200).body(UserRes.of(user));
-	}
 }
