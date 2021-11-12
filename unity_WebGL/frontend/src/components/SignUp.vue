@@ -131,6 +131,7 @@
 </template>
 <script>
 import http from "@/util/http-common";
+// import axios from "axios";
 
 export default {
   data() {
@@ -238,7 +239,7 @@ export default {
             alert("회원가입이 완료되었습니다");
             this.$router.push("/logIn");
           } else {
-            alert("회원가입 실패");
+            alert("회원가입에 실패하였습니다");
           }
         });
     },

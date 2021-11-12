@@ -23,4 +23,13 @@ public class User extends BaseEntity{
     @JsonIgnore
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     String password;
+
+    
+    public User() {};
+    
+	public User(String nickname, String userId) {
+		super();
+		this.nickname = nickname;
+		this.userId = userId;
+	}
 }
