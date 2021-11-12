@@ -5,6 +5,7 @@
       unityLoader="./BT4/Build/UnityLoader.json"
       class="unity-style mt-5"
     ></unity>
+    <p>{{ id }} {{ nickname }}</p>
   </div>
 </template>
 
