@@ -49,6 +49,7 @@ export default new Vuex.Store({
         },
       })
         .then((response) => {
+          // console.log(response.data);
           commit("setToken", response.data);
           commit("setUser", response.data);
           alert("로그인이 완료되었습니다");

@@ -1,11 +1,13 @@
 <template>
   <div class="d-flex justify-content-center my-">
     <unity
-      src="./BT4/Build/BT4.json"
+      src="./BT4/Build/Build.json"
       unityLoader="./BT4/Build/UnityLoader.json"
       class="unity-style mt-5"
+      ref="unityInstance"
     ></unity>
     <p>{{ id }} {{ nickname }}</p>
+    <button id="link-btn" @click="getUnityHook">닉네임 전송</button>
   </div>
 </template>
 
@@ -30,6 +32,11 @@ export default {
     console.log(this.$store.getters.user);
   },
   components: { Unity },
+  methods: {
+    getUnityHook() {
+      this.$refs.unityInstance.message('JavascriptHook', 'SetNickname', this.nickname);
+    }
+  },
 };
 </script>
 
