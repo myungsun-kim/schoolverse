@@ -11,11 +11,31 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: () => ({
     token: "",
+    user: {
+      id: "",
+      nickname: "",
+    },
   }),
-  getterts: {},
+  getters: {
+    user(state) {
+      console.log("getter");
+      console.log(state.user.id);
+      console.log(state.user.nickname);
+      return state.user;
+    },
+  },
   mutations: {
-    SET_USERINFO(state, value) {
+    setToken(state, value) {
       state.token = localStorage.setItem("token", value.accessToken);
+    },
+    setUser(state, value) {
+      // state.user.id = localStorage.setItem("id", value.id);
+      // state.user.nickname = localStorage.setItem("id", value.nickname);
+      localStorage.setItem("id", value.id);
+      localStorage.setItem("nickname", value.nickname);
+      console.log("set");
+      console.log(state.user.id);
+      console.log(state.user.nickname);
     },
   },
   actions: {
@@ -29,13 +49,33 @@ export default new Vuex.Store({
         },
       })
         .then((response) => {
-          commit("SET_USERINFO", response.data);
+          // console.log(response.data);
+          commit("setToken", response.data);
+          commit("setUser", response.data);
           alert("로그인이 완료되었습니다");
           router.replace({ name: "Home" });
           router.go();
         })
         .catch(() => {
           alert("아이디와 비밀번호를 확인해주세요");
+        });
+    },
+    myPage({ commit }) {
+      axios({
+        method: "get",
+        url: BASE_URL + "/users/me",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+        .then((response) => {
+          commit("setUser", response.data);
+          console.log("myPage");
+          console.log(response.data);
+        })
+        .catch(() => {
+          console.log(localStorage.getItem("token"));
+          alert("해당 회원의 정보가 없습니다");
         });
     },
   },
