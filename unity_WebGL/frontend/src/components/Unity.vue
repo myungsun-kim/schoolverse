@@ -1,14 +1,16 @@
 <template>
+<div>
   <div class="d-flex justify-content-center my-">
     <unity
       src="./BT4/Build/Build.json"
       unityLoader="./BT4/Build/UnityLoader.json"
-      class="unity-style mt-5"
+      class="unity-style mt-3"
       ref="unityInstance"
     ></unity>
-    <p>{{ id }} {{ nickname }}</p>
-    <button id="link-btn" @click="getUnityHook">닉네임 전송</button>
   </div>
+    <p>{{ id }} {{ nickname }}</p>
+    <button class="btn btn-success" @click="getUnityHook">계정 연동</button>
+</div>
 </template>
 
 <script>

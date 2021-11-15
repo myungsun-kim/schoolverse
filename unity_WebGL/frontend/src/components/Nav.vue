@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <!-- <a class="navbar-brand" href="">스쿨버스</a> -->
         <!-- <img src="../assets/schoolbus.png" alt=""> -->
-        <router-link to="/" class="router-text1"> 스쿨버스 </router-link>
+        <router-link to="/" class="router-text1"><img src="../assets/schoolbus.png" class="img-box" alt=""> 스쿨버스 </router-link>
         <form class="d-flex" v-if="this.token">          
           <button class="btn btn-outline-success mx-3" type="submit" @click="logout">로그아웃</button>
         </form>
@@ -42,5 +42,10 @@ export default {
   text-decoration: none;
   color: #00203f;
   font-size: 30px;
+}
+
+.img-box {
+  width: 55px;
+  height: 55px;
 }
 </style>

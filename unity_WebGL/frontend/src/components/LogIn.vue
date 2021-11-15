@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import http from "@/util/http-common";
 export default {
   name: "LogIn",
   data() {
@@ -42,7 +43,24 @@ export default {
   },
   methods: {
     logIn() {
-      this.$store.dispatch("logIn", this.userInfo);
+      http
+        .post("/auth/login", {
+          id: this.userInfo.id,
+          password: this.userInfo.password,
+        })
+        .then(({ data }) => {
+          console.log(data);
+          if (data.statusCode == 200) {
+            alert("로그인이 완료되었습니다.");
+            localStorage.setItem("id", data.id);
+            localStorage.setItem("nickname", data.nickname);
+            localStorage.setItem("token", data.accessToken);
+            this.$router.push("/");
+            this.$router.go();
+          } else {
+            alert("아이디와 비밀번호를 확인해주세요");
+          }
+        });
     },
   },
 };

@@ -12,7 +12,62 @@
     </div>
     <section class="fullpage page1">
       <h1>스쿨버스란 무엇인가요?</h1>
-      <p>스쿨버스란 ~~ 스쿨과 메타버스의 합성어로 ~~~ 아이들에게 게임을 하면서 ~~~을 늘려줄 수 있는~~~ 입니다. 스크롤을 내려 어떤 게임들이 있는지 확인해보세요</p>
+      <div class="login-box">
+        <h5 class="fw-bold mb-5">스쿨버스란 학교를 뜻하는 스쿨(School)과 메타버스(Metaverse)의 합성어로 메타버스 환경에서 학습용 게임을 제공합니다.</h5>
+        <h5 class="fw-bold my-5">스도쿠, 카드맞추기, 퍼즐 과 같이 아이들의 수리력과 암기력을 키울 수 있는 게임들이 준비되어있습니다. </h5>
+        <h5 class="fw-bold my-5">메타버스 환경을 마음껏 돌아다니며 원하는 학습 게임을 진행해보세요! </h5>
+        <h5 class="fw-bold my-5">스크롤을 내리면 스쿨버스의 더 많은 내용을 볼 수 있습니다.</h5>
+      </div>
+      <!-- <p>by <a href="https://webdeasy.de/?referer=cp-NVOEBL" target="_blank">WebDEasy</a></p> -->
+    </section>
+    <section class="fullpage page1">
+      <!-- <h1>메타버스 환경을 마음껏 뛰어다녀보세요.</h1>
+      <img src="../assets/schoolversegif.gif" alt=""> -->
+      <div class="card mb-3">
+        <img src="../assets/schoolversegif.gif" class="card-img-top card-size" alt="...">
+        <div class="card-body">
+          <h4 class="card-title fw-bold">메타버스 환경</h4>
+          <h5 class="card-text fw-bold">가상의 메타버스 공간을 마음껏 뛰어다니세요!</h5>
+          <h5 class="card-text fw-bold">칠판앞에서 Q버튼을 누르면 게임에 입장할 수 있습니다.</h5>
+        </div>
+      </div>
+      <!-- <p>made with <a href="https://vuejs.org/" target="_blank">Vue.js</a></p> -->
+    </section>
+    <section class="fullpage page1">
+      <h1>다양한 게임들이 준비되어 있어요</h1>
+      <div class="card-group">
+        <div class="card">
+          <img src="../assets/DotDot.jpg" class="card-img-top card-size" alt="../assets/schoolbus.png">
+          <div class="card-body" style="background-color:gray">
+            <h5 class="card-title">Dot Dot</h5>
+            <p class="card-text"></p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="../assets/puzzle.png" class="card-img-top card-size" alt="../assets/schoolbus.png">
+          <div class="card-body" style="background-color:gray">
+            <h5 class="card-title">Slide Puzzle</h5>
+            <p class="card-text"></p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="../assets/memory.png" class="card-img-top card-size" alt="../assets/schoolbus.png">
+          <div class="card-body" style="background-color:gray">
+            <h5 class="card-title">Memory Game</h5>
+            <p class="card-text"></p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="../assets/sudoku.png" class="card-img-top card-size" alt="../assets/schoolbus.png">
+          <div class="card-body" style="background-color:gray">
+            <h5 class="card-title" >Sudoku</h5>
+            <p class="card-text"></p>
+          </div>
+        </div>
+      </div>
+      <!-- <p>works on <b>desktop & mobile</b></p> -->
+    </section>
+    <section class="fullpage page1">
       <div class="my-box">
           <p class="fs-3 mb-0">
             <router-link to="/unity" class="router-text">
@@ -20,48 +75,6 @@
             </router-link>
           </p>
       </div>
-      <!-- <p>by <a href="https://webdeasy.de/?referer=cp-NVOEBL" target="_blank">WebDEasy</a></p> -->
-    </section>
-    <section class="fullpage page1">
-      <h1>~~~~ 게임</h1>
-      <h3>fsdanjkl;dfsnafsdnlkfd</h3>
-      <p>asdfnlkdasfnlk</p>
-      <p>adsfnlkfdnaskl</p>
-      <p>asdfadsffds</p>
-      <!-- <p>made with <a href="https://vuejs.org/" target="_blank">Vue.js</a></p> -->
-    </section>
-    <section class="fullpage page1">
-      <h1>Section 3</h1>
-      <div class="card-group">
-        <div class="card">
-          <img src="../assets/schoolbus.png" class="card-img-top" alt="../assets/schoolbus.png">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="../assets/schoolbus.png" class="card-img-top" alt="../assets/schoolbus.png">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="../assets/schoolbus.png" class="card-img-top" alt="../assets/schoolbus.png">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-          </div>
-        </div>
-      </div>
-      <!-- <p>works on <b>desktop & mobile</b></p> -->
-    </section>
-    <section class="fullpage page1">
-      <h1>Section 4</h1>
       <!-- <p>Tutorial <a href="https://webdeasy.de/en/programming-vue-js-fullpage-scroll/?referer=cp-NVOEBL" target="_blank">here</a></p> -->
     </section>
   </div>
@@ -279,5 +292,18 @@ export default {
     h1 {
       font-size: 2.5em;
     }
+  
+  .text-box {
+    margin: 40px;
+    padding: 10px;
+    border: 1px solid #adefd1;
+    border-radius: 20px;
+    background-color: #adefd1;
+    width: 400px;
+    opacity: 0.7;
+  }
+
+
+  
 }
 </style>
