@@ -7,14 +7,14 @@
           <input
             v-if="redupCheckId == true"
             type="text"
-            class="input"
+            class="input form-control-lg mb-3"
             v-model="userInfo.id"
             disabled
           />
           <input
             v-else
             type="text"
-            class="input"
+            class="input form-control-lg mb-3"
             v-model="userInfo.id"
             @focus="idClear"
             @input="userIdValid"
@@ -44,7 +44,7 @@
         <div class="col-md-12">
           <input
             v-if="redupCheckNickname == true"
-            type="text"
+            type="text form-control-lg mb-3"
             class="input"
             v-model="userInfo.nickname"
             disabled
@@ -52,7 +52,7 @@
           <input
             v-else
             type="nickname"
-            class="input"
+            class="input form-control-lg mb-3"
             v-model="userInfo.nickname"
             placeholder="닉네임을 입력해주세요"
             autocomplete="off"
@@ -79,7 +79,7 @@
           <input
             type="password"
             id="password"
-            class="input"
+            class="input form-control-lg mb-1"
             placeholder="비밀번호를 입력해주세요"
             autocomplete="off"
             v-model="userInfo.password"
@@ -87,7 +87,7 @@
             @input="passwordValid"
           />
           <!-- <label for="password" class="label">비밀번호</label> -->
-          <p class="text-red-500 pt-1" v-if="pwStatus === false">
+          <p class="text-red-500" v-if="pwStatus === false">
             8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.
           </p>
         </form>
@@ -97,7 +97,7 @@
           <input
             type="password"
             id="password2"
-            class="input"
+            class="input form-control-lg mb-1"
             placeholder="비밀번호를 확인해주세요"
             autocomplete="off"
             v-model="password2"
