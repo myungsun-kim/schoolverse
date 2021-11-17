@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.model.repo.RankRepo">
+	<select id="selectRank" resultType="RankDto">
+		select top 3 trim(userId) as userId, gameType, score 
+		from gameDB 
+		where gameType=#{gameType} order by score desc
+	</select>
+</mapper>
