@@ -82,12 +82,12 @@
       <!-- <p>works on <b>desktop & mobile</b></p> -->
     </section>
     <section class="fullpage page1">
-      <div class="my-box">
-          <p class="fs-3 mb-0">
-            <router-link to="/unity" class="router-text">
-              스쿨버스 시작하기
-            </router-link>
-          </p>
+      <div class="card mb-3">
+        <img src="../assets/rank.png" class="card-img-top card-size" alt="...">
+        <div class="card-body" style="background-color:#D7FFFD">
+          <h4 class="card-title fw-bold dongdong">게임별 랭킹</h4>
+          <h5 class="card-text dongdong">기록을 세워 닉네임을 명예의전당에 올려보세요!</h5>
+        </div>
       </div>
       <!-- <p>Tutorial <a href="https://webdeasy.de/en/programming-vue-js-fullpage-scroll/?referer=cp-NVOEBL" target="_blank">here</a></p> -->
     </section>

@@ -14,25 +14,29 @@
     <div>
 
       <b-modal id="modal-center" centered title="게임별 랭킹">
-        <div class="login-box">Dot Dot
-          <p>1.</p>
-          <p>2.</p>
-          <p>3.</p>
-        </div>
-        <div class="login-box">Sudoku
-          <p>1.</p>
-          <p>2.</p>
-          <p>3.</p>
-        </div>
-        <div class="login-box">Sliding Puzzle
-          <p>1.</p>
-          <p>2.</p>
-          <p>3.</p>
-        </div>
-        <div class="login-box">Memory Game
-          <p>1.</p>
-          <p>2.</p>
-          <p>3.</p>
+        <div class="bv-example-row">
+          <b-row>
+            <div class="login-box b-col-4 dongdong">Dot Dot
+              <p>1. </p>
+              <p>2. </p>
+              <p>3. </p>
+            </div>
+            <div class="login-box b-col-4 dongdong">Sudoku
+              <p>1. </p>
+              <p>2. </p>
+              <p>3. </p>
+            </div>
+            <div class="login-box b-col-6 dongdong">Sliding Puzzle
+              <p>1. </p>
+              <p>2. </p>
+              <p>3. </p>
+            </div>
+            <div class="login-box b-col-6 dongdong">Memory Game
+              <p>1. </p>
+              <p>2. </p>
+              <p>3. </p>
+            </div>
+          </b-row>
         </div>
       </b-modal>
     </div>
@@ -41,7 +45,7 @@
 
 <script>
 import Unity from "vue-unity-webgl";
-import http from "@/util/http-common";
+import http from "@/util/http-common2";
 
 export default {
   // name: "Unity",
