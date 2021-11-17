@@ -1,8 +1,8 @@
 <template>
   <div class="btn-group h-100 text-8xl h-full min-h-screen grid justify-items-center content-center">
-    <button class="sign" @click="signin" v-if="!activeSignin">로그인</button>
-    <button class="sign" @click="signup" v-if="!activeSignin">회원가입</button>
-    <button v-else class="sign signout-btn" @click="signout">로그아웃</button>
+    <button class="sign" @click="signin" v-if="!activeSignin"><p class="text-3xl py-5">로그인</p></button>
+    <button class="sign" @click="signup" v-if="!activeSignin"><p class="text-3xl py-5">회원가입</p></button>
+    <button v-else class="sign signout-btn" @click="signout"><p class="text-3xl py-5">로그아웃</p></button>
   </div>
 
 </template>
@@ -19,8 +19,8 @@ export default {
   setup() {
     const store = useStore()
     const router = useRouter()
-    const activeSignin = localStorage.getItem("access_token")
-    const refresh = localStorage.getItem("refresh_token")
+    const activeSignin = localStorage.getItem("accessToken")
+    // const refresh = localStorage.getItem("refresh_token")
 
     const signin = () => {
       router.push({ name: "Signin" })
@@ -45,7 +45,7 @@ export default {
 // }
 .btn-group {
   .sign {
-    @apply text-center text-white rounded-3xl w-1/3 bg-purple-600 my-10;
+    @apply text-center text-white rounded-3xl w-1/3 bg-green-300 my-5;
   }
 }
 
