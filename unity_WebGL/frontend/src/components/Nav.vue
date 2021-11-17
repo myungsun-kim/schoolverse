@@ -3,8 +3,7 @@
     <nav class="navbar navbar-light nav-color">
       <div class="container-fluid">
         <!-- <a class="navbar-brand" href="">스쿨버스</a> -->
-        <!-- <img src="../assets/schoolbus.png" alt=""> -->
-        <router-link to="/" class="router-text1"><img src="../assets/schoolbus.png" class="img-box" alt=""> 스쿨버스 </router-link>
+        <router-link to="/" class="router-text1"><img src="../assets/bus11.png" class="img-box" alt=""></router-link>
         <form class="d-flex" v-if="this.token">          
           <button class="btn btn-outline-success mx-3" type="submit" @click="logout">로그아웃</button>
         </form>
@@ -35,7 +34,7 @@ export default {
 
 <style>
 .nav-color {
-  background-color: #adefd1;
+  background-color: #A5E5D9;
   opacity: 0.8;
 }
 .router-text1 {
@@ -45,7 +44,7 @@ export default {
 }
 
 .img-box {
-  width: 55px;
-  height: 55px;
+  width: 70px;
+  height: 60px;
 }
 </style>

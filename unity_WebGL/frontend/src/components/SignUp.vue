@@ -1,20 +1,20 @@
 <template>
   <div class="container" style="width: 100%">
-    <h1 class="my-5">회원가입</h1>
+    <h1 class="my-5 description">회원가입</h1>
     <div class="register-box">
       <div class="input-form row">
         <form>
           <input
             v-if="redupCheckId == true"
             type="text"
-            class="input form-control-lg mb-3"
+            class="input form-control-lg mb-1"
             v-model="userInfo.id"
             disabled
           />
           <input
             v-else
             type="text"
-            class="input form-control-lg mb-3"
+            class="input form-control-lg mb-1 dongdong"
             v-model="userInfo.id"
             @focus="idClear"
             @input="userIdValid"
@@ -35,7 +35,7 @@
               중복확인
             </button>
           </div>
-          <p class="text-red-500 pt-1" v-if="userIdStatus === false">
+          <p class="text-red-500 pt-1 dongdong" v-if="userIdStatus === false">
             5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.
           </p>
         </form>
@@ -44,15 +44,15 @@
         <div class="col-md-12">
           <input
             v-if="redupCheckNickname == true"
-            type="text form-control-lg mb-3"
-            class="input"
+            type="text form-control-lg mb-1"
+            class="input form-control-lg mb-1"
             v-model="userInfo.nickname"
             disabled
           />
           <input
             v-else
             type="nickname"
-            class="input form-control-lg mb-3"
+            class="input form-control-lg mb-1 dongdong"
             v-model="userInfo.nickname"
             placeholder="닉네임을 입력해주세요"
             autocomplete="off"
@@ -70,7 +70,7 @@
             <button class="btn pointer-events-none" v-else>중복확인</button>
           </div>
         </div>
-        <p class="text-red-500 pt-1" v-if="nicknameStatus === false">
+        <p class="text-red-500 pt-1 dongdong" v-if="nicknameStatus === false">
           닉네임을 다시 확인해주세요.
         </p>
       </div>
@@ -79,7 +79,7 @@
           <input
             type="password"
             id="password"
-            class="input form-control-lg mb-1"
+            class="input form-control-lg mb-1 dongdong"
             placeholder="비밀번호를 입력해주세요"
             autocomplete="off"
             v-model="userInfo.password"
@@ -87,7 +87,7 @@
             @input="passwordValid"
           />
           <!-- <label for="password" class="label">비밀번호</label> -->
-          <p class="text-red-500" v-if="pwStatus === false">
+          <p class="text-red-500 dongdong" v-if="pwStatus === false">
             8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.
           </p>
         </form>
@@ -97,7 +97,7 @@
           <input
             type="password"
             id="password2"
-            class="input form-control-lg mb-1"
+            class="input form-control-lg mb-1 dongdong"
             placeholder="비밀번호를 확인해주세요"
             autocomplete="off"
             v-model="password2"
@@ -105,7 +105,7 @@
             @input="passwordSame"
           />
           <!-- <label for="password2" class="label">비밀번호 확인</label> -->
-          <p class="text-red-500 pt-1" v-if="pwCheck === false">
+          <p class="text-red-500 pt-1 dongdong" v-if="pwCheck === false">
             비밀번호가 일치하지 않습니다.
           </p>
         </form>
@@ -131,6 +131,8 @@
 </template>
 <script>
 import http from "@/util/http-common";
+import Swal from 'sweetalert2';
+
 // import axios from "axios";
 
 export default {
@@ -198,33 +200,62 @@ export default {
           .then(({ data }) => {
             if (data.statusCode == 200) {
               this.redupCheckId = true;
-              alert("사용 가능한 아이디입니다.");
-            }
-          })
+                Swal.fire({
+              title: '중복확인 성공',
+              text: '사용 가능한 아이디입니다.',
+              icon: 'success',
+              confirmButtonText: '확인!'
+              })
+          }})
           .catch((error) => {
             console.log(error);
-            alert("이미 존재하는 아이디입니다.");
+            Swal.fire({
+            title: '중복확인 실패',
+            text: '이미 존재하는 아이디입니다.',
+            icon: 'error',
+            confirmButtonText: '확인!'
+          })
           });
       } else {
-        alert(
-          "아이디는 5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다."
-        );
+        Swal.fire({
+            title: '',
+            text: '아이디는 5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.',
+            icon: 'error',
+            confirmButtonText: '확인!'
+          })
       }
     },
     redupNickname() {
       //닉네임 중복 체크
       http
         .get("/users/signUp/nickname/" + this.userInfo.nickname)
-        .then(({ data }) => {
-          if (data.statusCode == 200) {
+        .then(() => { 
+            // alert("로그인이 완료되었습니다.");
             this.redupCheckNickname = true;
-            alert("사용 가능한 닉네임입니다.");
-          }
+            Swal.fire({
+            title: '중복확인 성공',
+            text: '사용 가능한 닉네임입니다.',
+            icon: 'success',
+            confirmButtonText: '확인!',
+          })
+        }).catch(() => {
+            Swal.fire({
+            title: '중복확인 실패',
+            text: '이미 존재하는 닉네임입니다.',
+            icon: 'error',
+            confirmButtonText: '확인!'
+          })
         })
-        .catch((error) => {
-          console.log(error);
-          alert("이미 존재하는 닉네임입니다.");
-        });
+        // .then(({ data }) => {
+        //   if (data.statusCode == 200) {
+        //     this.redupCheckNickname = true;
+        //     alert("사용 가능한 닉네임입니다.");
+        //   }
+        // })
+        // .catch((error) => {
+        //   console.log(error);
+        //   alert("이미 존재하는 닉네임입니다.");
+        // });
     },
     register() {
       http
@@ -233,15 +264,23 @@ export default {
           password: this.userInfo.password,
           nickname: this.userInfo.nickname,
         })
-        .then(({ data }) => {
-          console.log(data);
-          if (data.statusCode == 200) {
-            alert("회원가입이 완료되었습니다");
+        .then(() => { 
+            // alert("로그인이 완료되었습니다.");
+            Swal.fire({
+            title: '회원가입 성공',
+            text: '성공적으로 회원가입 되었습니다.',
+            icon: 'success',
+            confirmButtonText: '로그인 하기!',
+          })
             this.$router.push("/logIn");
-          } else {
-            alert("회원가입에 실패하였습니다");
-          }
-        });
+        }).catch(() => {
+            Swal.fire({
+            title: '회원가입 실패',
+            text: '다시 시도해주세요.',
+            icon: 'error',
+            confirmButtonText: 'Cool'
+          })
+        })
     },
   },
 };

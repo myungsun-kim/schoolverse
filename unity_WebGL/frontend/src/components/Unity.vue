@@ -9,13 +9,39 @@
     ></unity>
   </div>
     <p>{{ id }} {{ nickname }}</p>
-    <button class="btn btn-success" @click="getUnityHook">계정 연동</button>
+    <button class="btn btn-info text-white" @click="getUnityHook">계정 연동</button>
+    <button v-b-modal.modal-center class="btn btn-warning text-white" @click="rank">순위 보기</button>
+    <div>
+
+      <b-modal id="modal-center" centered title="게임별 랭킹">
+        <div class="login-box">Dot Dot
+          <p>1.</p>
+          <p>2.</p>
+          <p>3.</p>
+        </div>
+        <div class="login-box">Sudoku
+          <p>1.</p>
+          <p>2.</p>
+          <p>3.</p>
+        </div>
+        <div class="login-box">Sliding Puzzle
+          <p>1.</p>
+          <p>2.</p>
+          <p>3.</p>
+        </div>
+        <div class="login-box">Memory Game
+          <p>1.</p>
+          <p>2.</p>
+          <p>3.</p>
+        </div>
+      </b-modal>
+    </div>
 </div>
 </template>
 
 <script>
 import Unity from "vue-unity-webgl";
-// import http from "@/util/http-common";
+import http from "@/util/http-common";
 
 export default {
   // name: "Unity",
@@ -37,6 +63,15 @@ export default {
   methods: {
     getUnityHook() {
       this.$refs.unityInstance.message('JavascriptHook', 'SetNickname', this.nickname);
+    },
+    rank() {
+      http
+        .get("/rank", {
+        })
+        .then(({ data }) => {
+          console.log(data)
+        }).catch(() => {
+        })
     }
   },
 };
