@@ -217,14 +217,6 @@ export default {
     flex-direction: column;
   }
 
-  .page1 {
-    background: center no-repeat url("../assets/classroom.png");
-    background-size:100vw 100vh;
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* justify-content: space-between; */
-  }
-
   h1 {
     font-size: 6em;
     margin: 0;
