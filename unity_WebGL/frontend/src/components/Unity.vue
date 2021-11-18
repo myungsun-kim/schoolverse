@@ -45,6 +45,7 @@
 <script>
 import Unity from "vue-unity-webgl";
 import http from "@/util/http-common2";
+import Swal from 'sweetalert2';
 
 export default {
   // name: "Unity",
@@ -55,28 +56,17 @@ export default {
       score: [],
     };
   },
-  // beforeCreate() {
-  //   http
-  //       .get("/rank", {
-  //       })
-  //       .then(({ data }) => {
-  //         console.log(data[0])
-  //         this.score = data
-  //       }).catch(() => {
-  //       })
-  // },
   created() {
-    // this.user = this.$store.getters.user;
-    // console.log("유니티 유저정보" + this.user);
-    // console.log(this.user);
-    
-    // console.log("getter");
-    // console.log(this.$store.state.user.id);
-    // console.log(this.$store.getters.user);
   },
   components: { Unity },
   methods: {
     getUnityHook() {
+      Swal.fire({
+            title: '계정연동',
+            text: '성공적으로 계정이 연동되었습니다.',
+            icon: 'success',
+            confirmButtonText: '확인'
+          })
       this.$refs.unityInstance.message('JavascriptHook', 'SetNickname', this.nickname);
     },
     rank() {
@@ -84,7 +74,6 @@ export default {
         .get("/rank", {
         })
         .then(({ data }) => {
-          // console.log(data[0])
           this.score = data
         }).catch(() => {
         })
