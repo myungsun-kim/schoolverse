@@ -5,10 +5,10 @@ public class RankDto {
 	int gameType;
 	int score;
 	
-	public RankDto(String userId, int ganeType, int score) {
+	public RankDto(String userId, int gameType, int score) {
 		super();
 		this.userId = userId;
-		this.gameType = ganeType;
+		this.gameType = gameType;
 		this.score = score;
 	}
 	public RankDto() {
@@ -25,8 +25,8 @@ public class RankDto {
 	public int getGaneType() {
 		return gameType;
 	}
-	public void setGaneType(int ganeType) {
-		this.gameType = ganeType;
+	public void setGaneType(int gameType) {
+		this.gameType = gameType;
 	}
 	public int getScore() {
 		return score;
