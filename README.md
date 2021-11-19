@@ -41,14 +41,14 @@
 ---
 
 1. 게임 접속시 맵의 모습
-- 이미지2
+![2](/uploads/2c45d836295f1e2540dcd6090759aac4/2.png)
 1. 게임 맵에서 미로의 모습
-- 이미지3
+![3](/uploads/515ff36906722a49c225557b0dd68d19/3.png)
 1. 게임 화면의 모습
-- 이미지4
-- 이미지5
-- 이미지6
-- 이미지7
+![4](/uploads/362a6fcb0f33aff45522f1d8ca5752f5/4.png)
+![5](/uploads/65ba87d62fe3dd2b4f2e6adfbe49acc8/5.png)
+![6](/uploads/eb90bbdc236df9d5bafce429a45f3a41/6.png)
+![7](/uploads/769b72747b594628f985a7087e864fc7/7.png)
 
 ## 설치 및 배포 설정
 
